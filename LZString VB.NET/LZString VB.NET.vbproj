@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2B7BAB64-3ECB-4208-9AC6-413C7340BAA6}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>LZString_VB.NET</RootNamespace>
+    <RootNamespace>LZStringVB</RootNamespace>
     <AssemblyName>LZString VB.NET</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>

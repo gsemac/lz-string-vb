@@ -115,6 +115,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LZString VB.NET\LZString VB.NET.vbproj">
+      <Project>{2b7bab64-3ecb-4208-9ac6-413c7340baa6}</Project>
+      <Name>LZString VB.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
