@@ -101,7 +101,7 @@
     Private Shared baseReverseDic As New Dictionary(Of String, Dictionary(Of Integer, Char))
 
     Private Structure CompressData
-        Dim [string] As String
+        Dim [string] As Text.StringBuilder
         Dim val As Integer
         Dim position As Integer
         Dim index As Integer
@@ -136,7 +136,7 @@
 
         If (data.position = data.bitsPerChar - 1) Then
             data.position = 0
-            data.[string] &= data.getCharFromInt(data.val)
+            data.[string].Append(data.getCharFromInt(data.val))
             data.val = 0
         Else
             data.position += 1
@@ -197,7 +197,7 @@
             .numBits = 2,
             .result = "",
             .data = New CompressData With {
-                .[string] = "",
+                .[string] = New Text.StringBuilder,
                 .val = 0,
                 .position = 0,
                 .bitsPerChar = bitsPerChar,
@@ -241,14 +241,14 @@
         While (True)
             context.data.val <<= 1
             If (context.data.position = bitsPerChar - 1) Then
-                context.data.string += (getCharFromInt(context.data.val))
+                context.data.string.Append(getCharFromInt(context.data.val))
                 Exit While
             Else
                 context.data.position += 1
             End If
         End While
 
-        Return context.data.string
+        Return context.data.string.ToString
 
     End Function
     Private Shared Function readBit(ByRef data As DecompressData) As Integer
