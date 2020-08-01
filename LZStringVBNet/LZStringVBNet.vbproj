@@ -1,0 +1,9 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net40;net40-client</TargetFrameworks>
+    <RootNamespace>LZStringVBNet</RootNamespace>
+    <AssemblyName>LZStringVBNet</AssemblyName>
+  </PropertyGroup>
+
+</Project>
