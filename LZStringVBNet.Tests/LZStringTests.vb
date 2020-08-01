@@ -6,13 +6,13 @@ Public Class LZStringTests
     <TestMethod()>
     Public Sub TestCompressToBase64()
 
-        Assert.AreEqual("BIUwNmD2A0AEDukBOYAmBCIA", LZString.compressToBase64("Hello, world!"))
+        Assert.AreEqual("BIUwNmD2A0AEDukBOYAmBCIA", LZString.CompressToBase64("Hello, world!"))
 
     End Sub
     <TestMethod()>
     Public Sub TestDecompressFromBase64()
 
-        Assert.AreEqual("Hello, world!", LZString.decompressfromBase64("BIUwNmD2A0AEDukBOYAmBCIA"))
+        Assert.AreEqual("Hello, world!", LZString.DecompressfromBase64("BIUwNmD2A0AEDukBOYAmBCIA"))
 
     End Sub
     <TestMethod()>
