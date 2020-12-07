@@ -15,4 +15,9 @@
 		<Description>VB.NET implementation of the lz-string JavaScript library</Description>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
 </Project>
