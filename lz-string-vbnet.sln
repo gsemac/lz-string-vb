@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "LZStringVBNet", "src\LZStringVBNet\LZStringVBNet.vbproj", "{D305A068-4838-41E9-B55B-44E8050CF4EC}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "LZStringVBNet.Tests", "test\LZStringVBNet.Tests\LZStringVBNet.Tests.vbproj", "{7D22AB0C-2CAC-49F6-9F08-3C2D56A25B04}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "LZStringVBNet.Tests", "tests\LZStringVBNet.Tests\LZStringVBNet.Tests.vbproj", "{7D22AB0C-2CAC-49F6-9F08-3C2D56A25B04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48B26397-C48A-4017-BD45-FEC9EF8C3D07}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CE47BB02-4767-4F83-97D9-16C2D228CC09}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CE47BB02-4767-4F83-97D9-16C2D228CC09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
