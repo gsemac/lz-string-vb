@@ -12,19 +12,19 @@ Public Class LZStringTests
     <TestMethod()>
     Public Sub TestDecompressFromBase64()
 
-        Assert.AreEqual("Hello, world!", LZString.DecompressfromBase64("BIUwNmD2A0AEDukBOYAmBCIA"))
+        Assert.AreEqual("Hello, world!", LZString.DecompressFromBase64("BIUwNmD2A0AEDukBOYAmBCIA"))
 
     End Sub
     <TestMethod()>
     Public Sub TestCompressToUTF16()
 
-        Assert.AreEqual("ɢ䰭䰾恔@㯄ʓFȱ ", LZString.CompressToUtf16("Hello, world!"))
+        Assert.AreEqual("ɢ䰭䰾恔@㯄ʓFȱ ", LZString.CompressToUTF16("Hello, world!"))
 
     End Sub
     <TestMethod()>
     Public Sub TestDecompressFromUTF16()
 
-        Assert.AreEqual("Hello, world!", LZString.DecompressfromUtf16("ɢ䰭䰾恔@㯄ʓFȱ "))
+        Assert.AreEqual("Hello, world!", LZString.DecompressFromUTF16("ɢ䰭䰾恔@㯄ʓFȱ "))
 
     End Sub
     <TestMethod()>

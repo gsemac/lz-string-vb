@@ -25,24 +25,24 @@
         End Select
 
     End Function
-    Public Shared Function DecompressfromBase64(input As String) As String
+    Public Shared Function DecompressFromBase64(input As String) As String
 
-        If (String.IsNullOrEmpty(input)) Then Return String.Empty
+        If String.IsNullOrEmpty(input) Then Return String.Empty
 
         Return Decompress(input.Length, 32, Function(index) GetBaseValue(KeyStrBase64, input(index)))
 
     End Function
 
-    Public Shared Function CompressToUtf16(input As String) As String
+    Public Shared Function CompressToUTF16(input As String) As String
 
-        If (String.IsNullOrEmpty(input)) Then Return String.Empty
+        If String.IsNullOrEmpty(input) Then Return String.Empty
 
         Return Compress(input, 15, Function(a) ChrW(a + 32))
 
     End Function
-    Public Shared Function DecompressfromUtf16(compressed As String) As String
+    Public Shared Function DecompressFromUTF16(compressed As String) As String
 
-        If (String.IsNullOrEmpty(compressed)) Then Return String.Empty
+        If String.IsNullOrEmpty(compressed) Then Return String.Empty
 
         Return Decompress(compressed.Length, 16384, Function(index) ChrW(AscW(compressed(index)) - 32))
 
