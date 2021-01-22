@@ -105,6 +105,8 @@
 
     Public Shared Function Compress(uncompressed As String) As String
 
+        If uncompressed Is Nothing Then Return ""
+
         Return Compress(uncompressed, 16, Function(a) ChrW(a))
 
     End Function

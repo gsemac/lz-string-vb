@@ -4,6 +4,30 @@
 Public Class LZStringTests
 
     <TestMethod()>
+    Public Sub TestCompress()
+
+        Assert.AreEqual($"օ〶惶@✰ӈ{Char.ConvertFromUtf32(0)}", LZString.Compress("hello world"))
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestDecompress()
+
+        Assert.AreEqual("hello world", LZString.Decompress($"օ〶惶@✰ӈ{Char.ConvertFromUtf32(0)}"))
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestCompressWithNull()
+
+        Assert.AreEqual("", LZString.Compress(Nothing))
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestDecompressWithNull()
+
+        Assert.AreEqual("", LZString.Decompress(Nothing))
+
+    End Sub
+    <TestMethod()>
     Public Sub TestCompressToBase64()
 
         Assert.AreEqual("BIUwNmD2A0AEDukBOYAmBCIA", LZString.CompressToBase64("Hello, world!"))
