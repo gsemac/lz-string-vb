@@ -28,6 +28,18 @@ Public Class LZStringTests
 
     End Sub
     <TestMethod()>
+    Public Sub TestCompressWithEmptyString()
+
+        Assert.AreEqual("䀀", LZString.Compress(""))
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestDecompressWithEmptyString()
+
+        Assert.AreEqual("", LZString.Decompress("䀀"))
+
+    End Sub
+    <TestMethod()>
     Public Sub TestCompressToBase64()
 
         Assert.AreEqual("BIUwNmD2A0AEDukBOYAmBCIA", LZString.CompressToBase64("Hello, world!"))
