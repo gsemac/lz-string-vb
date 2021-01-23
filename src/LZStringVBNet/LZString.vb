@@ -88,14 +88,15 @@
 
     Public Shared Function CompressToEncodedURIComponent(input As String) As String
 
-        If String.IsNullOrEmpty(input) Then Return String.Empty
+        If input Is Nothing Then Return String.Empty
 
         Return Compress(input, 6, Function(a) KeyStrUriSafe(a))
 
     End Function
     Public Shared Function DecompressFromEncodedURIComponent(input As String) As String
 
-        If String.IsNullOrEmpty(input) Then Return String.Empty
+        If input Is Nothing Then Return String.Empty
+        If input = String.Empty Then Return Nothing
 
         input = input.Replace(" ", "+")
 
@@ -105,7 +106,7 @@
 
     Public Shared Function Compress(uncompressed As String) As String
 
-        If uncompressed Is Nothing Then Return ""
+        If uncompressed Is Nothing Then Return String.Empty
 
         Return Compress(uncompressed, 16, Function(a) ChrW(a))
 
@@ -278,13 +279,15 @@
 
         If Not BaseReverseDic.ContainsKey(alphabet) Then
 
-            BaseReverseDic(alphabet) = New Dictionary(Of Integer, Char)
+            Dim newBaseReverseDict = New Dictionary(Of Integer, Char)
 
             For i As Integer = 0 To alphabet.Length - 1
 
-                BaseReverseDic(alphabet)(AscW(alphabet(i))) = ChrW(i)
+                newBaseReverseDict(AscW(alphabet(i))) = ChrW(i)
 
             Next
+
+            BaseReverseDic(alphabet) = newBaseReverseDict
 
         End If
 
@@ -400,10 +403,8 @@
             .GetNextValue = getNextValue
         }
 
-        For i As Integer = 0 To 2
-
+        For i As Integer = 0 To 3 - 1
             dictionary(i) = ChrW(i)
-
         Next
 
         Dim [next] As Integer = ReadBits(2, data)
@@ -422,10 +423,14 @@
         End Select
 
         dictionary(3) = ChrW(c)
-        result.Append(ChrW(c))
         w = ChrW(c)
+        result.Append(ChrW(c))
 
         While True
+
+            If data.Index > length Then
+                Return String.Empty
+            End If
 
             c = ReadBits(numBits, data)
 
