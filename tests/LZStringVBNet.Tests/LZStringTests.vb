@@ -55,19 +55,19 @@ Public Class LZStringTests
 
     End Sub
     <TestMethod()>
-    Public Sub TestCompressToUTF16()
+    Public Sub TestCompressToUtf16()
 
-        Assert.AreEqual("ɢ䰭䰾恔@㯄ʓFȱ ", LZString.CompressToUTF16("Hello, world!"))
-
-    End Sub
-    <TestMethod()>
-    Public Sub TestDecompressFromUTF16()
-
-        Assert.AreEqual("Hello, world!", LZString.DecompressFromUTF16("ɢ䰭䰾恔@㯄ʓFȱ "))
+        Assert.AreEqual("ɢ䰭䰾恔@㯄ʓFȱ ", LZString.CompressToUtf16("Hello, world!"))
 
     End Sub
     <TestMethod()>
-    Public Sub TestCompressesAndDecompressesAllPrintableUTF16Characters()
+    Public Sub TestDecompressFromUtf16()
+
+        Assert.AreEqual("Hello, world!", LZString.DecompressFromUtf16("ɢ䰭䰾恔@㯄ʓFȱ "))
+
+    End Sub
+    <TestMethod()>
+    Public Sub TestCompressesAndDecompressesAllPrintableUtf16Characters()
 
         ' This unit test is based off of this unit test:
         ' https://github.com/pieroxy/lz-string/blob/b2e0b270a9f3cf330b778b777385fcba384a1a02/tests/lz-string-spec.js#L53
@@ -125,7 +125,7 @@ Public Class LZStringTests
 
     End Sub
     <TestMethod()>
-    Public Sub TestCompressToUint8Array()
+    Public Sub TestCompressToUInt8Array()
 
         Dim expectedBytes As Byte() = {4, 133, 48, 54, 96, 246, 3, 64, 4, 14, 233, 1, 57, 128, 38, 4, 34, 0}
         Dim actualBytes As Byte() = LZString.CompressToUInt8Array("Hello, world!")
@@ -134,7 +134,7 @@ Public Class LZStringTests
 
     End Sub
     <TestMethod()>
-    Public Sub TestDecompressFromUint8Array()
+    Public Sub TestDecompressFromUInt8Array()
 
         Dim bytes As Byte() = {4, 133, 48, 54, 96, 246, 3, 64, 4, 14, 233, 1, 57, 128, 38, 4, 34, 0}
 
@@ -143,14 +143,14 @@ Public Class LZStringTests
     End Sub
 
     <TestMethod()>
-    Public Sub TestCompressToEncodedURIComponentAllCharactersAreURISafe()
+    Public Sub TestCompressToEncodedUriComponentAllCharactersAreURISafe()
 
         ' This unit test is based off of this unit test:
         ' https://github.com/pieroxy/lz-string/blob/b2e0b270a9f3cf330b778b777385fcba384a1a02/tests/lz-string-spec.js#L131
 
         Dim testString As String = GetRandomTestString()
-        Dim compressed As String = LZString.CompressToEncodedURIComponent(testString)
-        Dim decompressed As String = LZString.DecompressFromEncodedURIComponent(compressed)
+        Dim compressed As String = LZString.CompressToEncodedUriComponent(testString)
+        Dim decompressed As String = LZString.DecompressFromEncodedUriComponent(compressed)
 
         Assert.AreEqual(-1, compressed.IndexOf("="c))
         Assert.AreEqual(-1, compressed.IndexOf("/"c))
@@ -158,14 +158,14 @@ Public Class LZStringTests
 
     End Sub
     <TestMethod()>
-    Public Sub TestCompressToEncodedURIComponentPlusAndSpaceAreInterchangeable()
+    Public Sub TestCompressToEncodedUriComponentPlusAndSpaceAreInterchangeable()
 
         ' This unit test is based off of this unit test:
         ' https://github.com/pieroxy/lz-string/blob/b2e0b270a9f3cf330b778b777385fcba384a1a02/tests/lz-string-spec.js#L144
 
         Dim testString As String = GetTestString()
         Dim compressed As String = "CIVwTglgdg5gBAFwIYIQezdGAaO0DWeAznlAFYCmAxghQCanqIAWFcR 0u0ECEKWOEih4AtqJBQ2YCkQAOaKEQq5hDKhQA2mklSTb6cAESikVMGjnMkMWUbii0ANzbQmCVkJlIhUBkYoUOBA5ew9XKHwAOjgAFU9Tc0trW10kMDAAT3Y0UTY0ADMWCMJ3TwAjNDpMgHISTUzRKzgoKtlccpAEHLyWIPS2AogDBgB3XmZSQiJkbLku3ApRcvo6Q2hi9k4oGPiUOrhR627TfFlN5FQMOCcIIghyzTZJNbBNjmgY4H1mNBB7tgAVQgLjA9wQtRIAEEnlQ4AAxfRnKDWUTEOBrFyaSyCHzoOQQPSaODmQJojxBUZoMD4EjlbLIMC2PiwTaJCxWGznCndawuOAyUzQQxBcLsXj5Ipiy7oNAxAByFFGDjMHJS50c-I2TCoiiIIF6YrkMlufyIDTgBJgeSgCAAtEMRiqkpzUr4GOERKIIDAwCg2GU2A0mpNWmsiIsXLaQPoLchtvBY5tqmxxh5iqIYkYAOqsES6prpQS8RBoOCaJDKMB28qVwwy66C5z6bgiI6EyaZP7sCgBirgJS4MVEPQZLBDiqaO60MGtlh3El13CjCg1fnhn1SBg OhgEDwHkYtCyKA1brebTZPlsCRUSaFAp2xnMuAUAoFagIbD2TxEJAQOgs2zVcZBaNBumfCgWUTKBskKTZWjAUxiQ fMtB0XAiDLLsQEORQzx7NgfGxbp4OgAoK3EARFBiABJEQCjML84FrZQGEUTZjTQDQiBIQ8VxqUCmJjS9gnuWBlzYOh8Ig5gCGKUDxm0FiiNg0gKKQKi A4-plLUPBuipEBNG3GgRItFZfD4O1yMo0x0CyKIgAAA$$"
-        Dim decompressed As String = LZString.DecompressFromEncodedURIComponent(compressed)
+        Dim decompressed As String = LZString.DecompressFromEncodedUriComponent(compressed)
 
         Assert.AreEqual(testString, decompressed)
 

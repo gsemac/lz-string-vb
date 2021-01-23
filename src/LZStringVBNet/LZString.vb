@@ -33,14 +33,14 @@
 
     End Function
 
-    Public Shared Function CompressToUTF16(input As String) As String
+    Public Shared Function CompressToUtf16(input As String) As String
 
         If String.IsNullOrEmpty(input) Then Return String.Empty
 
         Return Compress(input, 15, Function(a) ChrW(a + 32))
 
     End Function
-    Public Shared Function DecompressFromUTF16(compressed As String) As String
+    Public Shared Function DecompressFromUtf16(compressed As String) As String
 
         If String.IsNullOrEmpty(compressed) Then Return String.Empty
 
@@ -86,14 +86,14 @@
 
     End Function
 
-    Public Shared Function CompressToEncodedURIComponent(input As String) As String
+    Public Shared Function CompressToEncodedUriComponent(input As String) As String
 
         If input Is Nothing Then Return String.Empty
 
         Return Compress(input, 6, Function(a) KeyStrUriSafe(a))
 
     End Function
-    Public Shared Function DecompressFromEncodedURIComponent(input As String) As String
+    Public Shared Function DecompressFromEncodedUriComponent(input As String) As String
 
         If input Is Nothing Then Return String.Empty
         If String.IsNullOrEmpty(input) Then Return Nothing
