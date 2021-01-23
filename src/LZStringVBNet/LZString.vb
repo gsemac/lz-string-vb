@@ -2,11 +2,11 @@
 
     ' Public members
 
-    Public Shared Function CompressToBase64(input As String) As String
+    Public Shared Function CompressToBase64(str As String) As String
 
-        If String.IsNullOrEmpty(input) Then Return String.Empty
+        If String.IsNullOrEmpty(str) Then Return String.Empty
 
-        Dim res As String = Compress(input, 6, Function(a) KeyStrBase64(a))
+        Dim res As String = Compress(str, 6, Function(a) KeyStrBase64(a))
 
         Select Case res.Length Mod 4
 
@@ -25,19 +25,19 @@
         End Select
 
     End Function
-    Public Shared Function DecompressFromBase64(input As String) As String
+    Public Shared Function DecompressFromBase64(compressed As String) As String
 
-        If String.IsNullOrEmpty(input) Then Return String.Empty
+        If String.IsNullOrEmpty(compressed) Then Return String.Empty
 
-        Return Decompress(input.Length, 32, Function(index) GetBaseValue(KeyStrBase64, input(index)))
+        Return Decompress(compressed.Length, 32, Function(index) GetBaseValue(KeyStrBase64, compressed(index)))
 
     End Function
 
-    Public Shared Function CompressToUtf16(input As String) As String
+    Public Shared Function CompressToUtf16(str As String) As String
 
-        If String.IsNullOrEmpty(input) Then Return String.Empty
+        If String.IsNullOrEmpty(str) Then Return String.Empty
 
-        Return Compress(input, 15, Function(a) ChrW(a + 32))
+        Return Compress(str, 15, Function(a) ChrW(a + 32))
 
     End Function
     Public Shared Function DecompressFromUtf16(compressed As String) As String
@@ -49,9 +49,9 @@
     End Function
 
     ''' <summary>compress into uint8array (UCS-2 big endian format)</summary>
-    Public Shared Function CompressToUInt8Array(uncompressed As String) As Byte()
+    Public Shared Function CompressToUInt8Array(str As String) As Byte()
 
-        Dim compressed As String = Compress(uncompressed)
+        Dim compressed As String = Compress(str)
         Dim buffer = New Byte(compressed.Length * 2 - 1) {} ' 2 bytes per character
         Dim totalLength As Integer = compressed.Length
 
@@ -86,29 +86,29 @@
 
     End Function
 
-    Public Shared Function CompressToEncodedUriComponent(input As String) As String
+    Public Shared Function CompressToEncodedUriComponent(str As String) As String
 
-        If input Is Nothing Then Return String.Empty
+        If str Is Nothing Then Return String.Empty
 
-        Return Compress(input, 6, Function(a) KeyStrUriSafe(a))
-
-    End Function
-    Public Shared Function DecompressFromEncodedUriComponent(input As String) As String
-
-        If input Is Nothing Then Return String.Empty
-        If String.IsNullOrEmpty(input) Then Return Nothing
-
-        input = input.Replace(" ", "+")
-
-        Return Decompress(input.Length, 32, Function(index) GetBaseValue(KeyStrUriSafe, input(index)))
+        Return Compress(str, 6, Function(a) KeyStrUriSafe(a))
 
     End Function
+    Public Shared Function DecompressFromEncodedUriComponent(compressed As String) As String
 
-    Public Shared Function Compress(uncompressed As String) As String
+        If compressed Is Nothing Then Return String.Empty
+        If String.IsNullOrEmpty(compressed) Then Return Nothing
 
-        If uncompressed Is Nothing Then Return String.Empty
+        compressed = compressed.Replace(" ", "+")
 
-        Return Compress(uncompressed, 16, Function(a) ChrW(a))
+        Return Decompress(compressed.Length, 32, Function(index) GetBaseValue(KeyStrUriSafe, compressed(index)))
+
+    End Function
+
+    Public Shared Function Compress(str As String) As String
+
+        If str Is Nothing Then Return String.Empty
+
+        Return Compress(str, 16, Function(a) ChrW(a))
 
     End Function
     Public Shared Function Decompress(compressed As String) As String
