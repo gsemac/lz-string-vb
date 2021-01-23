@@ -96,7 +96,7 @@
     Public Shared Function DecompressFromEncodedURIComponent(input As String) As String
 
         If input Is Nothing Then Return String.Empty
-        If input = String.Empty Then Return Nothing
+        If String.IsNullOrEmpty(input) Then Return Nothing
 
         input = input.Replace(" ", "+")
 
